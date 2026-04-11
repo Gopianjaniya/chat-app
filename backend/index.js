@@ -1,5 +1,5 @@
-// const express = require('express')// method-1
-import express from "express"; // method-2
+ 
+import express from "express"; 
 import dotenv from "dotenv"; 
 import connectDB from "./config/database.js";
 import userRoute from "./routes/userRoute.js";
@@ -9,6 +9,7 @@ import cors from "cors";
 import { app,server } from "./socket/socket.js";
 dotenv.config({});
 
+connectDB();
  
 const PORT = process.env.PORT || 5000;
 
@@ -23,13 +24,11 @@ const corsOption={
 app.use(cors(corsOption)); 
 
 
-// routes
 app.use("/api/v1/user",userRoute); 
 app.use("/api/v1/message",messageRoute);
  
 
-server.listen(PORT, ()=>{
-    connectDB();
-    console.log(`Server listen at prot ${PORT}`);
-});
-
+// server.listen(PORT, ()=>{
+//     console.log(`Server listen at prot ${PORT}`);
+// });
+export default app;
