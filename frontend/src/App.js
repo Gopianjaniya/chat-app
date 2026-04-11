@@ -12,15 +12,15 @@ import { BASE_URL } from '.';
 
 const router = createBrowserRouter([{
         path: "/",
-        element: < HomePage / >
+        element: < HomePage />
     },
     {
         path: "/signup",
-        element: < Signup / >
+        element: < Signup />
     },
     {
         path: "/login",
-        element: < Login / >
+        element: < Login />
     },
 
 ])
@@ -39,7 +39,7 @@ function App() {
             });
             dispatch(setSocket(socketio));
 
-            socketio ? .on('getOnlineUsers', (onlineUsers) => {
+            socketio?.on('getOnlineUsers', (onlineUsers) => {
                 dispatch(setOnlineUsers(onlineUsers))
             });
             return () => socketio.close();
@@ -52,12 +52,8 @@ function App() {
 
     }, [authUser, dispatch, socket]);
 
-    return ( <
-        div className = "p-4 h-screen flex items-center justify-center" >
-        <
-        RouterProvider router = { router }
-        /> < /
-        div >
+    return ( <div className = "p-4 h-screen flex items-center justify-center" >
+        <RouterProvider router = { router }/> </div >
 
     );
 }
