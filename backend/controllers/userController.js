@@ -19,10 +19,9 @@ export const register = async(req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // profilePhoto
-        // const maleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
-        // const femaleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
-        const maleProfilePhoto = `g`;
-        const femaleProfilePhoto = `p`;
+        const maleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
+        const femaleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
+
 
         await User.create({
             fullName,
