@@ -2,7 +2,7 @@ import { User } from "../models/userModel.js";
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 
-export const register = async (req, res) => {
+export const register = async(req, res) => {
     try {
         const { fullName, username, password, confirmPassword, gender } = req.body;
         if (!fullName || !username || !password || !confirmPassword || !gender) {
@@ -19,8 +19,10 @@ export const register = async (req, res) => {
         const hashedPassword = await bcrypt.hash(password, 10);
 
         // profilePhoto
-        const maleProfilePhoto = `https://avatar.iran.liara.run/public/boy?username=${username}`;
-        const femaleProfilePhoto = `https://avatar.iran.liara.run/public/girl?username=${username}`;
+        // const maleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
+        // const femaleProfilePhoto = `https://ui-avatars.com/api/?name=${username}`;
+        const maleProfilePhoto = `g`;
+        const femaleProfilePhoto = `p`;
 
         await User.create({
             fullName,
@@ -37,7 +39,7 @@ export const register = async (req, res) => {
         console.log(error);
     }
 };
-export const login = async (req, res) => {
+export const login = async(req, res) => {
     try {
         const { username, password } = req.body;
         if (!username || !password) {
@@ -83,7 +85,7 @@ export const logout = (req, res) => {
         console.log(error);
     }
 }
-export const getOtherUsers = async (req, res) => {
+export const getOtherUsers = async(req, res) => {
     try {
         const loggedInUserId = req.id;
         const otherUsers = await User.find({ _id: { $ne: loggedInUserId } }).select("-password");
