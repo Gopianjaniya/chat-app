@@ -26,6 +26,9 @@ app.use(cors(corsOption));
 app.use("/api/v1/user", userRoute);
 app.use("/api/v1/message", messageRoute);
 
+app.get("/", (req, res) => {
+    res.send("Backend is running ");
+});
 server.listen(PORT, () => {
     console.log(`Server listen at prot ${PORT}`);
 });
