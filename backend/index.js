@@ -21,6 +21,7 @@ const corsOption = {
     credentials: true,
 };
 app.use(cors(corsOption));
+console.log("FRONTEND_URL:", process.env.FRONTEND_URL);
 
 // routes
 app.use("/api/v1/user", userRoute);
