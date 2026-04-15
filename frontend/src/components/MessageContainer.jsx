@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+ 
 import SendInput from "./SendInput";
 import Messages from "./Messages";
-import { useSelector, useDispatch } from "react-redux";
+import { useSelector  } from "react-redux";
 
 const MessageContainer = () => {
   const { selectedUser, authUser, onlineUsers } = useSelector(

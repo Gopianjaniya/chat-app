@@ -6,7 +6,7 @@ import toast from "react-hot-toast";
 import {useNavigate} from "react-router-dom";
 import {useSelector, useDispatch} from "react-redux";
 import { setAuthUser, setOtherUsers, setSelectedUser } from '../redux/userSlice';
-import { setMessages } from '../redux/messageSlice';
+import { setAllMessages } from '../redux/messageSlice';
 import { BASE_URL } from '..';
  
 const Sidebar = () => {
@@ -22,7 +22,7 @@ const Sidebar = () => {
             navigate("/login");
             toast.success(res.data.message);
             dispatch(setAuthUser(null));
-            dispatch(setMessages(null));
+            dispatch(setAllMessages(null));
             dispatch(setOtherUsers(null));
             dispatch(setSelectedUser(null));
         } catch (error) {
