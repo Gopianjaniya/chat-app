@@ -1,23 +1,37 @@
-import React, { useEffect } from 'react'
-import Sidebar from './Sidebar'
-import MessageContainer from './MessageContainer'
-import { useSelector } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import React, { useEffect } from "react";
+import Sidebar from "./Sidebar";
+import MessageContainer from "./MessageContainer";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 
 const HomePage = () => {
-  const { authUser } = useSelector(store => store.user);
+  const { authUser, selectedUser } = useSelector((store) => store.user); // ✅ FIX
+
   const navigate = useNavigate();
+
   useEffect(() => {
     if (!authUser) {
       navigate("/login");
     }
   }, [authUser, navigate]);
-  return (
-    <div className='flex sm:h-[450px] md:h-[550px] rounded-lg overflow-hidden bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0'>
-      <Sidebar />
-      <MessageContainer />
-    </div>
-  )
-}
 
-export default HomePage
+  return (
+    <div className="flex h-screen p-10 gap-3 bg-white/10 backdrop-blur-lg  w-auto">
+      {/* Sidebar */}
+      <div
+        className={`${selectedUser ? "hidden" : "block"}  md:block md:w-[300px] w-[380px]`}
+      >
+        <Sidebar />
+      </div>
+
+      {/* Chat */}
+      <div
+        className={`${selectedUser ? "block" : "hidden"} sm:w-[600px] md:block flex-1  `}
+      >
+        <MessageContainer />
+      </div>
+    </div>
+  );
+};
+
+export default HomePage;

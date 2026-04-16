@@ -47,11 +47,11 @@ const Sidebar = () => {
     }
   };
   return (
-    <div className="border-r border-slate-500 p-4 flex flex-col">
+    <div className="border-r h-full border-slate-500 p-4 flex flex-col ">
       <form
         onSubmit={searchSubmitHandler}
         action=""
-        className="flex items-center gap-2"
+        className="flex items-center sm:gap-2  justify-around"
       >
         <input
           value={search}
@@ -60,14 +60,14 @@ const Sidebar = () => {
           type="text"
           placeholder="Search..."
         />
-        <button type="submit" className="btn bg-zinc-700 text-white">
+        <button type="submit" className="btn bg-zinc-700 text-white pr-2">
           <BiSearchAlt2 className="w-6 h-6 outline-none" />
         </button>
       </form>
       <div className="divider px-3"></div>
       <OtherUsers />
-      <div className="mt-2">
-        <button onClick={logoutHandler} className="btn btn-sm">
+      <div className="mt-auto">
+        <button onClick={logoutHandler} className="btn btn-sm w-full">
           Logout
         </button>
       </div>
