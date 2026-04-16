@@ -12,6 +12,7 @@ import {
 } from "../redux/userSlice";
 import { setAllMessages } from "../redux/messageSlice";
 import { BASE_URL } from "..";
+import { disconnectSocket } from "../socket";
 
 const Sidebar = () => {
   const [search, setSearch] = useState("");
@@ -23,7 +24,7 @@ const Sidebar = () => {
   const logoutHandler = async () => {
     try {
       const res = await axios.get(`${BASE_URL}/api/v1/user/logout`);
-
+      disconnectSocket();
       navigate("/login");
       toast.success(res.data.message);
       dispatch(setAuthUser(null));

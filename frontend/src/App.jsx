@@ -5,10 +5,8 @@ import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import io from "socket.io-client";
-import { setSocket } from "./redux/socketSlice";
 import { setOnlineUsers } from "./redux/userSlice";
-import { BASE_URL } from ".";
+import { connectSocket, disconnectSocket, getSocket } from "./socket";
 
 const router = createBrowserRouter([
   {
@@ -32,23 +30,21 @@ function App() {
 
   useEffect(() => {
     if (!authUser) return;
-    const socketio = io(`${BASE_URL}`, {
-      query: {
-        userId: authUser._id,
-      },
-    });
-    socketio.on("connect", () => {
-      console.log(" connected:", socketio.id);
 
-      dispatch(setSocket(socketio));
-    });
+    // socket connect
+    connectSocket(authUser._id);
 
-    socketio.on("getOnlineUsers", (onlineUsers) => {
-      dispatch(setOnlineUsers(onlineUsers));
-    });
+    const socket = getSocket();
+
+    if (socket) {
+      socket.on("getOnlineUsers", (onlineUsers) => {
+        dispatch(setOnlineUsers(onlineUsers));
+      });
+    }
 
     return () => {
-      socketio.close();
+      // cleanup
+      disconnectSocket();
     };
   }, [authUser, dispatch]);
 

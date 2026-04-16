@@ -5,6 +5,7 @@ import axios from "axios";
 import { useDispatch } from "react-redux";
 import { setAuthUser } from "../redux/userSlice";
 import { BASE_URL } from "..";
+import { connectSocket } from "../socket";
 
 const Login = () => {
   const [user, setUser] = useState({
@@ -23,11 +24,13 @@ const Login = () => {
         },
         withCredentials: true,
       });
-      navigate("/");
-      console.log(res);
       dispatch(setAuthUser(res.data));
+      // SOCKET CONNECT HERE
+      connectSocket(res.data._id);
+
+      navigate("/");
     } catch (error) {
-      toast.error(error.response.data.message);
+      toast.error(error.response?.data?.message);
       console.log(error);
     }
     setUser({
