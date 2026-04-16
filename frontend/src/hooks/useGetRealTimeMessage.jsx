@@ -11,7 +11,6 @@ const useGetRealTimeMessage = () => {
       return;
     }
 
-    console.log("✅ socket ready");
     const handler = (newMessage) => {
       dispatch(addMessage(newMessage));
     };
