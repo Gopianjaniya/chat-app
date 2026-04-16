@@ -10,8 +10,7 @@ import { persistStore } from "redux-persist";
 
 let persistor = persistStore(store);
 
-export const BASE_URL =
-  process.env.REACT_APP_BACKEND_URL?.trim();
+export const BASE_URL = process.env.REACT_APP_BACKEND_URL?.trim();
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
