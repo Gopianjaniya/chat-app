@@ -28,7 +28,10 @@ const Login = () => {
       // SOCKET CONNECT HERE
       connectSocket(res.data._id);
 
-      navigate("/");
+     setTimeout(() => {
+       navigate("/");
+     }, 500);
+     
     } catch (error) {
       toast.error(error.response?.data?.message);
       console.log(error);

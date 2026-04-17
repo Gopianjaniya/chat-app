@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import Sidebar from "./Sidebar";
 import MessageContainer from "./MessageContainer";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   const { authUser, selectedUser } = useSelector((store) => store.user); // ✅ FIX
@@ -11,7 +11,8 @@ const HomePage = () => {
 
   useEffect(() => {
     if (!authUser) {
-      navigate("/login");
+      // navigate("/login");
+      return <Navigate to="/login" />;
     }
   }, [authUser, navigate]);
 

@@ -1,6 +1,10 @@
 import Signup from "./components/Signup";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
 import HomePage from "./components/HomePage";
 import Login from "./components/Login";
 import { useEffect } from "react";
@@ -8,10 +12,23 @@ import { useSelector, useDispatch } from "react-redux";
 import { setOnlineUsers } from "./redux/userSlice";
 import { connectSocket, disconnectSocket, getSocket } from "./socket";
 
+const ProtectedRoute = ({ children }) => {
+  const { authUser } = useSelector((store) => store.user);
+
+  if (!authUser) {
+    return <Navigate to="/login" />;
+  }
+
+  return children;
+};
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <HomePage />,
+    element: (
+      <ProtectedRoute>
+        <HomePage />
+      </ProtectedRoute>
+    ),
   },
   {
     path: "/signup",

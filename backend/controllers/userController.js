@@ -74,6 +74,7 @@ export const login = async(req, res) => {
                 httpOnly: true,
                 secure: true,
                 sameSite: "none",
+                path: "/",
             })
             .json({
                 _id: user._id,
