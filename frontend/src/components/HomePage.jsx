@@ -17,7 +17,7 @@ const HomePage = () => {
   }, [authUser, navigate]);
 
   return (
-    <div className="flex h-screen p-10 gap-3 bg-white/10 backdrop-blur-lg  w-auto">
+    <div className="flex h-screen sm:p-10 gap-3 bg-white/10 backdrop-blur-lg  w-auto">
       {/* Sidebar */}
       <div
         className={`${selectedUser ? "hidden" : "block"}  md:block md:w-[300px] w-[380px]`}
@@ -27,7 +27,7 @@ const HomePage = () => {
 
       {/* Chat */}
       <div
-        className={`${selectedUser ? "block" : "hidden"} sm:w-[600px] md:block flex-1  `}
+        className={`${selectedUser ? "block" : "hidden"} sm:w-[600px]  md:block flex-1 `}
       >
         <MessageContainer />
       </div>
