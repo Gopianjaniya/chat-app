@@ -13,6 +13,7 @@ const useGetMessages = () => {
           axios.defaults.withCredentials = true;
           const res = await axios.get(
             `${BASE_URL}/api/v1/message/${selectedUser?._id}`,
+            { withCredentials: true },
           );
             dispatch(setAllMessages(res.data)); //  pura data set
         } catch (error) {
